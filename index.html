@@ -1,0 +1,30 @@
+<!doctype html>
+<html ng-app="scrabble">
+  <head>
+    <meta charset="utf-8">
+    <title>Scrabble | Word Finder</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+  </head>
+  <body ng-controller="WordFinder">
+    <div class = "mainContent">
+      <h2>Scrabble <span class="tile">W</span><span class="tile">O</span><span class="tile">R</span><span class="tile">D</span> Finder</h2>
+      <div class="inputForm">
+        <form name="wordForm" ng-submit="findCombos(newWord)">
+          <input type='text' required placeholder="Your Word Here" ng-model='newWord' ng-maxlength="9" ng-class="{changed: myForm.myInput.$dirty}"/>
+          <button type='submit'>Find Words</button>
+        </form>
+        <p ng-model="letters">Letters: <strong class="ng-cloak">{{newWord | uppercase}}</strong></p>
+      </div>
+      <div class="wordResults">
+        <div class="eachWord" ng-repeat="word in words | orderBy: 'wordLength'" >
+          <p class="word"><strong class="ng-cloak">{{word.word}}</strong></p>
+          <p class="definition"><em><span class="ng-cloak">{{word.partOfSpeech}}</span></em><span class="ng-cloak">: {{word.definition}}</span></p>
+        </div>
+      </div>
+    </div>    
+    <script src="js/dictionaryWords.js"></script>
+    <script src="js/app.js"></script>
+  <body>
+</html>
